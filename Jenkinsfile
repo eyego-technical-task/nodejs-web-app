@@ -26,9 +26,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('deployment/') {
-                    sh "kubectl apply -f namespace.yml"
-                    sh "kubectl apply -f service.yaml"
-                    sh "envsubst < deployment.yaml | kubectl apply -f -"
+                    withKubeConfig(credentialsId: 'kubeconfig') {
+                        sh "kubectl apply -f namespace.yml"
+                        sh "kubectl apply -f service.yaml"
+                        sh "envsubst < deployment.yaml | kubectl apply -f -"
+                    }
                 }
             }
         }
