@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh "docker tag eyego-app:lts . ${DOCKER_REGISTRY}/${DOCKER_REPO}:${BUILD_NUMBER}"
+                sh "docker tag eyego-app:lts ${DOCKER_REGISTRY}/${DOCKER_REPO}:${BUILD_NUMBER}"
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}"
                 }
