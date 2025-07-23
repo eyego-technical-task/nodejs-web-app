@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = '054037114964.dkr.ecr.us-east-1.amazonaws.com'
-        DOCKER_REPO = 'eyego/node-web-app'
+        DOCKER_REGISTRY = 'ecr_repo_url'
+        DOCKER_REPO = 'eyego-nodejs-app'
     }
     
     stages {
